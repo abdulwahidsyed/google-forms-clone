@@ -6,8 +6,11 @@ import "@fontsource/roboto/700.css";
 import Router from "./Router";
 import { Header } from "./Components/Header/Header";
 import { Footer } from "./Components/Footer/Footer";
+import { useFetchInitialData } from "./hooks/useFetchInitialData";
 
 function App() {
+  useFetchInitialData();
+
   return (
     <div className="App">
       <Header />
