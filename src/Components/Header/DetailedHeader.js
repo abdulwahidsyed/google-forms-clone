@@ -7,10 +7,23 @@ import ColorLensIcon from "@mui/icons-material/ColorLens";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import UndoIcon from "@mui/icons-material/Undo";
 import RedoIcon from "@mui/icons-material/Redo";
+import { useLocation, useNavigate } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+
+import { NavButtons } from "../NavButtons";
 import { StyledTypoBig, StyledTypoSmallGray } from "../UI/Typography";
-import { Button } from "../UI/Button";
 
 export const DetailedHeader = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const location = useLocation();
+  const pathname = location.pathname;
+
+  const { sections } = useSelector((st) => st.questionnaire);
+
+  const isLastRoute = pathname === "/preview";
+  const isFirstRoute = pathname === "/";
+
   return (
     <Wrapper>
       <StyledSection1>
@@ -25,7 +38,8 @@ export const DetailedHeader = () => {
         <StyledEyeIcon />
         <StyledUndoIcon />
         <StyledRedoIcon />
-        <Button>Send</Button>
+
+        <NavButtons />
       </StyledSection2>
     </Wrapper>
   );

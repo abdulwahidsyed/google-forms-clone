@@ -8,12 +8,16 @@ import { Header } from "./Components/Header/Header";
 import { Footer } from "./Components/Footer/Footer";
 import { useFetchInitialData } from "./hooks/useFetchInitialData";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function App() {
   useFetchInitialData();
 
   return (
     <div className="App">
       <Header />
+      <ToastContainer />
       <Router />
       <Footer />
     </div>

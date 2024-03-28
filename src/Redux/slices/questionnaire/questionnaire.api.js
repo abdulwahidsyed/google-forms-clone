@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { generatePostHeaders } from "../../../api/api.utils";
+import { toast } from "react-toastify";
 
 export const fetchData = createAsyncThunk(
   "questionnaire/fetchData",
@@ -10,10 +11,11 @@ export const fetchData = createAsyncThunk(
         throw new Error();
       }
       const res = await api.json();
-      debugger;
+      toast.success("Successfully Fetched Data!");
       return res.data;
     } catch (error) {
-      debugger;
+      toast.error("Something went wrong!");
+      console.log("Error", error);
     }
   }
 );
@@ -21,8 +23,6 @@ export const fetchData = createAsyncThunk(
 export const postData = createAsyncThunk(
   "questionnaire/postData",
   async (data) => {
-    //   const body = JSON.stringify({ data });
-    debugger;
     try {
       const requestOptions = generatePostHeaders(data);
 
@@ -35,8 +35,10 @@ export const postData = createAsyncThunk(
       if (!api.ok) {
         throw new Error();
       }
+      toast.success("Successfully Posted Data!");
     } catch (error) {
-      debugger;
+      toast.error("Something went wrong!");
+      console.log("Error", error);
     }
   }
 );

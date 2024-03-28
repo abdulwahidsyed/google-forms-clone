@@ -1,11 +1,8 @@
 import { Box } from "@mui/material";
 import styled from "styled-components";
-import { Button } from "../UI/Button";
 import { useLocation, useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { postData } from "../../Redux/slices/questionnaire/questionnaire.api";
-
-const routes = ["/", "/Questionnaire", "/preview"];
+import { NavButtons } from "../NavButtons";
 
 export const Footer = () => {
   const navigate = useNavigate();
@@ -18,28 +15,9 @@ export const Footer = () => {
   const isLastRoute = pathname === "/preview";
   const isFirstRoute = pathname === "/";
 
-  const onClickNext = () => {
-    const currentRouteIndex = routes.findIndex((fn) => fn === pathname);
-    const nextPath = routes[currentRouteIndex + 1];
-    if (nextPath) navigate(nextPath);
-  };
-  const onClickBack = () => {
-    const currentRouteIndex = routes.findIndex((fn) => fn === pathname);
-    const prvPath = routes[currentRouteIndex - 1];
-    if (prvPath) navigate(prvPath);
-  };
-
-  const onSubmit = () => {
-    dispatch(postData(sections));
-  };
   return (
     <StyledFooter>
-      {isFirstRoute ? null : <Button onClick={onClickBack}>Back</Button>}
-      {isLastRoute ? (
-        <Button onClick={onSubmit}>Submit</Button>
-      ) : (
-        <Button onClick={onClickNext}>Next</Button>
-      )}
+      <NavButtons />
     </StyledFooter>
   );
 };
